@@ -1,0 +1,22 @@
+<?php
+$MESS["VSSP_OPTION_ONEEMAIL"] = "Количество Email адресов пользователя";
+$MESS["VSSP_OPTION_ONEEMAIL_Y"] = "Общий для всех листов рассылки";
+$MESS["VSSP_OPTION_ONEEMAIL_N"] = "Разные для листов рассылки";
+$MESS["VSSP_OPTION_TAB_OPTIONS"] = "Настройки";
+$MESS["VSSP_OPTION_TAB_ACCOUNT"] = "Аккаунт SendPulse";
+$MESS["VSSP_SAVE"] = "Сохранить";
+$MESS["VSSP_DEFAULT"] = "По умолчанию";
+$MESS["VSSP_OPTION_SHOW_NAME"] = "Показывать пользователю:<br><small>Если не выбрано ни чего, отображаются все</small>";
+$MESS["VSSP_OPTION_AGENT_TIME"] = "Время запуска агента (Часы:минуты)";
+$MESS["VSSP_OPTION_AUTOSUBSCRIBE"] = "При регистрации:";
+$MESS["VSSP_OPTION_GROUPFIRST"] = "При включении первый раз в любую из групп:";
+$MESS["VSSP_OPTION_GROUPFIRST_LIST"] = "Подписать на:";
+$MESS["VSSP_OPTION_GROUPFIRST_REMOVE"] = "Автоматически удалить из списка через, дней<br><small>Пустое поле или 0 - не удалять</small>:";
+$MESS["VSSP_OPTION_GROUPFIRST_UPDATE"] = "Отметить текущих пользователей групп как получивших рассылку:";
+$MESS["VSSP_NO"] = "Нет";
+$MESS["VSSP_YES"] = "Да";
+$MESS["VSSP_OPTIONS_NO_SUTOSUBSCRIBE"] = "Нет автоматичской подпиcки";
+$MESS["VSSP_OPTION_TAB_AUTOSUBSRIBE"] = "Автоподписка";
+$MESS["VSSP_CONNECTION_SUCCESS"] = "Соединение с сервисом установлено";
+$MESS["VSSP_CONNECTION_NO"] = "Соединение с сервисом не установлено";
+$MESS["VSSP_SENDPULSE_INFO"] = 'Для интеграции с сервисом Вам необходимо зарегистрироваться на сервисе <a target="_blank" href="https://sendpulse.com/ru/register?utm_source=va-soft_ru&utm_medium=referral&utm_campaign=va-soft_ru">SendPulse</a>.<br>После регистрации параметры доступа можно найти в <a target="_blank" href="https://login.sendpulse.com/settings/?utm_source=va-soft_ru&utm_medium=referral&utm_campaign=va-soft_ru">Настройках аккаунта</a> - АПИ';

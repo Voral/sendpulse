@@ -1,0 +1,22 @@
+<?php
+$MESS["VSSP_OPTION_ONEEMAIL"] = "Number of Email addresses of the user";
+$MESS["VSSP_OPTION_ONEEMAIL_Y"] = "Common for all mailing lists";
+$MESS["VSSP_OPTION_ONEEMAIL_N"] = "Different for mailing lists";
+$MESS["VSSP_OPTION_TAB_OPTIONS"] = "Options";
+$MESS["VSSP_OPTION_TAB_ACCOUNT"] = "Account SendPulse";
+$MESS["VSSP_SAVE"] = "Save";
+$MESS["VSSP_DEFAULT"] = "Set Defaults";
+$MESS["VSSP_OPTION_SHOW_NAME"] = "Show to user:<br><small>If nothing is selected, show all</small>";
+$MESS["VSSP_OPTION_AGENT_TIME"] = "Agent start time (Hours:minutes)";
+$MESS["VSSP_OPTION_AUTOSUBSCRIBE"] = "During registration:";
+$MESS["VSSP_OPTION_GROUPFIRST"] = "When user turn on the first time in any of the groups:";
+$MESS["VSSP_OPTION_GROUPFIRST_LIST"] = "Subscribe on:";
+$MESS["VSSP_OPTION_GROUPFIRST_REMOVE"] = "Automatically remove from the list after, days<br><small>Empty field or 0 - do not delete</small>:";
+$MESS["VSSP_OPTION_GROUPFIRST_UPDATE"] = "Mark current users of groups as received:";
+$MESS["VSSP_NO"] = "No";
+$MESS["VSSP_YES"] = "Yes";
+$MESS["VSSP_OPTIONS_NO_SUTOSUBSCRIBE"] = "No automatic subscribing";
+$MESS["VSSP_OPTION_TAB_AUTOSUBSRIBE"] = "Autosubscribe";
+$MESS["VSSP_CONNECTION_SUCCESS"] = "Connection to the service exists";
+$MESS["VSSP_CONNECTION_NO"] = "Connection to the service NOT exists";
+$MESS["VSSP_SENDPULSE_INFO"] = 'To integrate with the service, you need to register on the <a target="_blank" href="https://sendpulse.com/register?utm_source=va-soft_ru&utm_medium=referral&utm_campaign=va-soft_en">SendPulse</a> service.<br>After registration, the access parameters can be found in <a target="_blank" href="https://login.sendpulse.com/settings/?utm_source=va-soft_en&utm_medium=referral&utm_campaign=va-soft_en">Account Settings</a> - API';

@@ -1,0 +1,52 @@
+.subscribe-email-default span {
+	font-weight: bold;
+}
+
+.subscribe-new {
+	overflow: hidden;
+	clear: both;
+}
+
+.subscribe-new div {
+	float: left;
+}
+
+.subscribe-new label,
+.subscribe-new select,
+.subscribe-new button {
+	float: left;
+	line-height: 30px;
+	height: 30px;
+	padding: 0 10px;
+	margin: 0 20px 0 0;
+}
+
+.subscribe-item {
+	border-top: 1px solid #ccc;
+	margin: 10px 0;
+	padding: 10px 0;
+	clear: both;
+	overflow: hidden;
+}
+
+.subscribe-item:last-child {
+	border-bottom: 1px solid #ccc;
+}
+
+.subscribe-item form {
+	float: right;
+}
+
+.subscribe-msg {
+	margin: 10px 0;
+	padding: 10px;
+	border-left: 3px solid green;
+}
+
+.subscribe-msg.error {
+	border-left-color: red;
+	color: red;
+}
+.subscribe-title{
+	float:left;
+}
