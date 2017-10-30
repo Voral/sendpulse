@@ -1,2 +1,4 @@
-# sendpulse
-Module for Birtrix CMS
+# Модуль интеграции Birtrix CMS и SendPulse
+
+Ожидает публикации на Битрикс маркетплейс
+
