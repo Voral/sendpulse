@@ -123,6 +123,7 @@ class VasoftSendpulseComponent extends CBitrixComponent
 				if (!$obBook->active) {
 					++$this->arResult['INACTIVE'];
 				}
+				if (LANG_CHARSET === "windows-1251") $obBook->name = Sendpulse\Utils::detectAndConvertToWin($obBook->name);
 				$this->arResult['LISTS'][$obBook->id] = $obBook;
 			}
 			$arUserInfo = $api->getEmailGlobalInfo($this->arResult['EMAIL']);
