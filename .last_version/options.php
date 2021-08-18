@@ -304,6 +304,7 @@ if ($MODULE_RIGHT >= "W" && Loader::includeModule($module_id)) {
 			else:
 				$prevSeparator = false;
 				foreach ($arViewOptions2 as $arOption):
+					if (LANG_CHARSET === "windows-1251") $arOption['OPTIONS']['LIST'] = Sendpulse\Utils::mbConvertArray($arOption['OPTIONS']['LIST']);
 					if ($arOption['TAB'] != $arTab['DIV']) continue;
 					if (isset($arOption['SEPARATOR'])):
 						if ($prevSeparator) continue;
