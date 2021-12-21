@@ -334,10 +334,14 @@ if ($MODULE_RIGHT >= "W" && Loader::includeModule($module_id)) {
                                     ?>
                                     <select
                                             name="<?= $arOption['FIELD_NAME'] ?>"<? if ($arOption['OPTIONS']['MULTI']) echo ' multiple' ?>>
+
                                         <? foreach ($arOption['OPTIONS']['LIST'] as $val => $name): ?>
                                             <option
-                                                    value="<?= $val ?>"<?
-                                            if (in_array($val, $arOption['VALUE'])) echo ' selected';
+                                                    value="<?= $val ?>"<?php
+                                            if (
+                                                (is_array($arOption['VALUE']) && in_array($val, $arOption['VALUE'], false))
+                                                || ($val == $arOption['VALUE'])
+                                            ) echo ' selected';
                                             ?>><?= $name ?></option>
                                         <? endforeach; ?>
                                     </select>
