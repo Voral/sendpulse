@@ -4,6 +4,7 @@
  * @author Воробьев Александр
  * @see https://va-soft.ru/
  * @package vasoft.sendpulse
+ * @version 1.0.3
  * @subpackage Настройки модуя
  */
 

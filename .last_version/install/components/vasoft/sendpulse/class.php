@@ -4,7 +4,7 @@
  *
  * Модуль интеграции с сервисом Email рассылок SendPulse и BitrixCMS
  * @author Воробьев Александр
- * @version 1.0.0
+ * @version 1.0.3
  * @package vasoft.sendpulse
  * @see https://va-soft.ru/market/sendpulse/
  * @subpackage Компонент управления подпиской
