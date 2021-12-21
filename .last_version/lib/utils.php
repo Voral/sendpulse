@@ -1,9 +1,10 @@
-<?
+<?php
+
 namespace Vasoft\Sendpulse;
 
 class Utils
 {
-    /*Рекрусивная смена кодировки значений массива*/
+    /*Рекурсивная смена кодировки значений массива*/
     public static function mbConvertArray($array)
     {
         foreach ($array as $key => $value) {
@@ -16,6 +17,7 @@ class Utils
         return $array;
     }
 
+
     public static function detectEncode($string)
     {
         return mb_detect_encoding($string, implode(',', mb_list_encodings()));
@@ -23,11 +25,10 @@ class Utils
 
     public static function detectAndConvertToWin($string)
     {
-        if ($string && detectEncode($string) == "UTF-8") {
+        if ($string && self::detectEncode($string) === "UTF-8") {
             return mb_convert_encoding($string, "windows-1251", "UTF-8");
         }
         return $string;
     }
 
 }
-?>
