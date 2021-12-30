@@ -24,7 +24,7 @@ use stdClass;
 class ApiClient
 {
 
-	protected $apiUrl = 'https://api.sendpulse.com';
+	protected string $apiUrl = 'https://api.sendpulse.com';
 
 	protected $userId;
 	protected $secret;
