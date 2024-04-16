@@ -7,19 +7,21 @@ namespace Vasoft\Sendpulse;
 
 
 use Bitrix\Main\ArgumentException;
-use Bitrix\Main\Diag\Debug;
+use Bitrix\Main\Config\Option;
 use Bitrix\Main\Loader;
 use Bitrix\Main\LoaderException;
+use Bitrix\Main\Localization\Loc;
 use Bitrix\Main\ObjectPropertyException;
 use Bitrix\Main\SystemException;
 use Bitrix\Main\Type\Date;
 use Bitrix\Main\UserTable;
-use Bitrix\Main\Config\Option;
-use Bitrix\Main\Localization\Loc;
 use Exception;
 
 class Handlers
 {
+    private static string $id = '';
+    private static string $code = '';
+
     /**
      * @param $arFields
      * @return bool
@@ -30,19 +32,20 @@ class Handlers
      */
     public static function OnBeforeUserUpdate(&$arFields)
     {
-        if (isset($arFields['EMAIL']) && Loader::includeModule('vasoft.sendpulse')) {
+        if (!self::isModuleActive()) {
+            return true;
+        }
+        if (isset($arFields['EMAIL'])) {
             $arInfo = UserTable::getList([
                 'filter' => ['ID' => $arFields['ID']],
                 'select' => ['EMAIL']
             ])->fetch();
             if ($arFields['EMAIL'] !== $arInfo['EMAIL']) {
-                $id = Option::get('vasoft.sendpulse', 'ID');
-                $code = Option::get('vasoft.sendpulse', 'SECURE');
                 if ($arInfo['EMAIL'] === '') {
                     $bookId = (int)Option::get('vasoft.sendpulse', 'AUTOSUBSCRIB');
-                    if ($id !== '' && $code !== '' && $bookId > 0) {
+                    if ($bookId > 0) {
                         try {
-                            $api = new Client($id, $code);
+                            $api = new Client(static::$id, static::$code);
                             $api->addEmails($bookId, $arFields['EMAIL']);
                         } catch (Exception $e) {
                             // @todo обработать ситуацию
@@ -50,16 +53,14 @@ class Handlers
                     }
                 } else {
                     $result = false;
-                    if ($id !== '' && $code !== '') {
-                        try {
-                            $api = new Client($id, $code);
-                            $connection = $api->isConnected();
-                        } catch (Exception $e) {
-                            $connection = false;
-                        }
-                        if ($connection) {
-                            $result = $api->changeEmail($arInfo['EMAIL'], $arFields['EMAIL']);
-                        }
+                    try {
+                        $api = new Client(static::$id, static::$code);
+                        $connection = $api->isConnected();
+                    } catch (Exception $e) {
+                        $connection = false;
+                    }
+                    if ($connection) {
+                        $result = $api->changeEmail($arInfo['EMAIL'], $arFields['EMAIL']);
                     }
                     if (!$result) {
                         global $APPLICATION;
@@ -72,15 +73,36 @@ class Handlers
         return true;
     }
 
+    /**
+     * @return bool
+     * @throws LoaderException
+     */
+    private static function isModuleActive(): bool
+    {
+        if (!Loader::includeModule('vasoft.sendpulse')) {
+            return false;
+        }
+        static::$id = trim(Option::get('vasoft.sendpulse', 'ID'));
+        static::$code = trim(Option::get('vasoft.sendpulse', 'SECURE'));
+
+        return (static::$id !== '') && (static::$code !== '');
+    }
+
+    /**
+     * @param $arFields
+     * @return void
+     * @throws LoaderException
+     */
     public static function OnAfterUserRegister(&$arFields)
     {
-        if (isset($arFields['EMAIL']) && $arFields['EMAIL'] !== '' && Loader::includeModule('vasoft.sendpulse')) {
-            $id = Option::get('vasoft.sendpulse', 'ID');
-            $code = Option::get('vasoft.sendpulse', 'SECURE');
+        if (!self::isModuleActive()) {
+            return;
+        }
+        if (isset($arFields['EMAIL']) && $arFields['EMAIL'] !== '') {
             $bookId = (int)Option::get('vasoft.sendpulse', 'AUTOSUBSCRIB');
-            if ($id !== '' && $code !== '' && $bookId > 0) {
+            if ($bookId > 0) {
                 try {
-                    $api = new Client($id, $code);
+                    $api = new Client(static::$id, static::$code);
                     $api->addEmails($bookId, [$arFields['EMAIL']]);
                 } catch (Exception $e) {
                     // @todo обработать ситуацию
@@ -89,6 +111,14 @@ class Handlers
         }
     }
 
+    /**
+     * @param $USER_ID
+     * @param $arGroups
+     * @return void
+     * @throws ArgumentException
+     * @throws ObjectPropertyException
+     * @throws SystemException
+     */
     public static function OnAfterSetUserGroup($USER_ID, $arGroups)
     {
         if (is_array(current($arGroups))) {
@@ -131,18 +161,10 @@ class Handlers
                         return;
                     }
                     $email = $arUser['EMAIL'];
-                    $id = Option::get('vasoft.sendpulse', 'ID');
-                    $code = Option::get('vasoft.sendpulse', 'SECURE');
-                    if ($id === '' || $code === '') {
-                        return;
-                    }
                     try {
-                        $api = new Client($id, $code);
+                        $api = new Client(static::$id, static::$code);
                         $needConnect = !$api->isConnected();
                     } catch (Exception $e) {
-                        $needConnect = true;
-                    }
-                    if ($needConnect) {
                         return;
                     }
                 }
